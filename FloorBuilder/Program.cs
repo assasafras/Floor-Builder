@@ -12,7 +12,11 @@ namespace FloorBuilder
         private static bool i;
         static void Main(string[] args)
         {
+            CreateFloor();
+        }
 
+        private static void CreateFloor()
+        {
             while (true)
             {
                 var defaultWidth = 50;
@@ -44,22 +48,22 @@ namespace FloorBuilder
                 var f = new Floor(width, height);
                 //f.Init(iterations);
                 var controller = new CrawlerController()
-                    {
-                        StepsMax = 10,
-                        StepsMin = 2,
-                        TargetFloor = f,
-                        CanChangeDirection = false,
-                        ChanceToSpawnForward = 0.5,
-                        ChanceToSpawnLeft = 0.3,
-                        ChanceToSpawnRight = 0.3,
-                        DepthMax = depthMax,
-                        DepthMin = depthMin,
-                        OverwritableTiles = new List<Tile>()
+                {
+                    StepsMax = 10,
+                    StepsMin = 2,
+                    TargetFloor = f,
+                    CanChangeDirection = false,
+                    ChanceToSpawnForward = 0.5,
+                    ChanceToSpawnLeft = 0.3,
+                    ChanceToSpawnRight = 0.3,
+                    DepthMax = depthMax,
+                    DepthMin = depthMin,
+                    OverwritableTiles = new List<Tile>()
                         {
                             Tile.Empty,
                             Tile.Floor
                         }
-                    };
+                };
 
                 var startPoint = Point.RandomPoint(f.Width, f.Height);
                 var startDirection = Point.RandomDirection(-1, 1, DirectionFlag.NoDiagonals);
@@ -79,7 +83,7 @@ namespace FloorBuilder
                 Console.WriteLine("Press anything to add corridors!");
                 Console.ReadKey();
 
-                f.Model.Fill(Tile.Floor);
+                //f.Model.Fill(Tile.Floor);
 
                 //c.Go();
                 f.PrintModel();
